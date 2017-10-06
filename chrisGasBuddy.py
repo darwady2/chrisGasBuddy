@@ -26,6 +26,7 @@ def show_prices(prices):
 	return complete_prices
 
 
+#Winnebago logic.
 def winnebago():
 	html = get_http('https://www.gasbuddy.com/Station/66970')
 	prices_list = get_prices_from_web(html)
@@ -41,7 +42,7 @@ def winnebago():
 	current_date = datetime.datetime.now().strftime("%m-%d-%y")
 	filename = 'winnebago_price_' + current_date + '.csv'
 	with open(filename, 'wb') as csvfile:
-		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL) #quotechar='|', 
+		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Raw Cost of Propane',raw_cost_of_propane])
 		filewriter.writerow(['WI Propane MFT',propane_mft])
 		filewriter.writerow(['Propane Price',propane_price])
@@ -49,7 +50,7 @@ def winnebago():
 	return propane_price
 	
 
-
+#R&D Diesel logic.
 def rd_diesel():
 	html = get_http('https://www.gasbuddy.com/Station/29546')
 	prices_list = get_prices_from_web(html)
@@ -59,7 +60,7 @@ def rd_diesel():
 	current_date = datetime.datetime.now().strftime("%m-%d-%y")
 	filename = 'r&d_diesel_price_' + current_date + '.csv'
 	with open(filename, 'wb') as csvfile:
-		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL) #quotechar='|',
+		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Retail Diesel at Falcon Fuel, 300 S Cicero Ave',retail_gas])
 		filewriter.writerow(['AFS Weekly Diesel Fuel Price, 4654 W Washington Blvd',sale_gas])
 		
