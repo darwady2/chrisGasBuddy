@@ -60,6 +60,7 @@ def winnebago():
 		filewriter.writerow(['WI Propane MFT',propane_mft])
 		filewriter.writerow(['Propane Price',propane_price])
 	
+	print '\nWinnebago file created, see ' + filename
 	return propane_price
 	
 
@@ -82,12 +83,16 @@ def rd_diesel():
 		filewriter.writerow(['Retail Diesel at Falcon Fuel, 300 S Cicero Ave',retail_gas])
 		filewriter.writerow(['AFS Weekly Diesel Fuel Price, 4654 W Washington Blvd',sale_gas])
 		
+	print '\nR&D file created, see ' + filename
 	return sale_gas
 		
 def main():
 	
 	winnebago()
 	rd_diesel()
+	print '\nDone.\n'
+	
+	
 
 
 if __name__ == '__main__':
