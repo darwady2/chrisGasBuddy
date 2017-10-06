@@ -1,3 +1,3 @@
 # chrisGasBuddy
 
-A simple script to help get the price of gas at a particular gas station.
+Find the price of gas at a particular gas station and perform some logic on it to return a particular cost of fuel.
