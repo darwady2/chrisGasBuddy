@@ -33,6 +33,23 @@ def create_filename(client):
 	return client + '_' + current_date + '.csv'
 
 
+#Return the proper directory, and if it doesn't exist, create it.
+def create_directory(dir, op_sys):
+	directory = os.path.join(os.path.expanduser('~'), dir)
+	if os == 'windows':
+		directory = os.path.join('c:/', path)
+	if not os.path.exists(directory):
+		os.makedirs(directory)
+	return directory
+
+
+#Combines the output of the filename and directory.
+def create_filepath(filename, directory, op_sys):
+	d = create_directory(dir = directory, op_sys = op_sys)
+	f = create_filename(filename)
+	path = os.path.join(d, f)
+	return path
+
 #Winnebago logic.
 def winnebago():
 	
@@ -54,17 +71,14 @@ def winnebago():
 	raw_cost_of_propane = propane_price - propane_mft
 	
 	#Create CSV.
-	filename = create_filename('winnebago_price')
-	filepath = os.path.join('danTest/', filename)
-	if not os.path.exists('danTest/'):
-		os.makedirs('danTest/')
+	filepath = create_filepath(filename = 'winnebago_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac')
 	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Raw Cost of Propane',raw_cost_of_propane])
 		filewriter.writerow(['WI Propane MFT',propane_mft])
 		filewriter.writerow(['Propane Price',propane_price])
 	
-	print '\nWinnebago file created, see "' + filename + '".'
+	print '\nWinnebago file created, see "' + filepath + '"'
 	return propane_price
 	
 
@@ -81,18 +95,17 @@ def rd_diesel():
 	sale_gas = retail_gas - .10
 	
 	#Create CSV.
-	filename = create_filename('r&d_diesel_price')
-	filepath = os.path.join('~/Documents/Github/chrisGasBuddy/danTest', filename)
-	if not os.path.exists('~/Documents/Github/chrisGasBuddy/danTest'):
-		os.makedirs('~/Documents/Github/chrisGasBuddy/danTest')
+	filepath = create_filepath(filename = 'r&d_diesel_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac')
 	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Retail Diesel at Falcon Fuel, 300 S Cicero Ave',retail_gas])
 		filewriter.writerow(['AFS Weekly Diesel Fuel Price, 4654 W Washington Blvd',sale_gas])
 		
-	print '\nR&D file created, see "' + filename + '".'
+	print '\nR&D file created, see "' + filepath + '".'
 	return sale_gas
+
 		
+#Main program.
 def main():
 	
 	winnebago()
