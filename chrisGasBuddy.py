@@ -1,6 +1,7 @@
 import datetime
 import csv
 import urllib2
+import os
 from bs4 import BeautifulSoup
 
 
@@ -54,7 +55,10 @@ def winnebago():
 	
 	#Create CSV.
 	filename = create_filename('winnebago_price')
-	with open(filename, 'wb') as csvfile:
+	filepath = os.path.join('danTest/', filename)
+	if not os.path.exists('danTest/'):
+		os.makedirs('danTest/')
+	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Raw Cost of Propane',raw_cost_of_propane])
 		filewriter.writerow(['WI Propane MFT',propane_mft])
@@ -78,7 +82,10 @@ def rd_diesel():
 	
 	#Create CSV.
 	filename = create_filename('r&d_diesel_price')
-	with open(filename, 'wb') as csvfile:
+	filepath = os.path.join('~/Documents/Github/chrisGasBuddy/danTest', filename)
+	if not os.path.exists('~/Documents/Github/chrisGasBuddy/danTest'):
+		os.makedirs('~/Documents/Github/chrisGasBuddy/danTest')
+	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Retail Diesel at Falcon Fuel, 300 S Cicero Ave',retail_gas])
 		filewriter.writerow(['AFS Weekly Diesel Fuel Price, 4654 W Washington Blvd',sale_gas])
@@ -92,8 +99,6 @@ def main():
 	rd_diesel()
 	print '\nFinished, script run successfully.\n'
 	
-	
-
 
 if __name__ == '__main__':
     main()
