@@ -71,7 +71,7 @@ def winnebago():
 	raw_cost_of_propane = propane_price - propane_mft
 	
 	#Create CSV.
-	filepath = create_filepath(filename = 'winnebago_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac')
+	filepath = create_filepath(filename = 'winnebago_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac') #Write op_sys = 'windows' if running on windows
 	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Raw Cost of Propane',raw_cost_of_propane])
@@ -95,7 +95,7 @@ def rd_diesel():
 	sale_gas = retail_gas - .10
 	
 	#Create CSV.
-	filepath = create_filepath(filename = 'r&d_diesel_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac')
+	filepath = create_filepath(filename = 'r&d_diesel_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac') #Write op_sys = 'windows' if running on windows
 	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Retail Diesel at Falcon Fuel, 300 S Cicero Ave',retail_gas])
