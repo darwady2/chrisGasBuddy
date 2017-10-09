@@ -36,7 +36,7 @@ def create_filename(client):
 #Return the proper directory, and if it doesn't exist, create it.
 def create_directory(dir, op_sys):
 	directory = os.path.join(os.path.expanduser('~'), dir)
-	if os == 'windows':
+	if op_sys == 'windows':
 		directory = os.path.join('c:/', path)
 	if not os.path.exists(directory):
 		os.makedirs(directory)
