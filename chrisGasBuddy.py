@@ -34,18 +34,18 @@ def create_filename(client):
 
 
 #Return the proper directory, and if it doesn't exist, create it.
-def create_directory(dir, op_sys):
+def create_directory(dir, windows):
 	directory = os.path.join(os.path.expanduser('~'), dir)
-	if op_sys == 'windows':
-		directory = os.path.join('c:/', path)
+	if windows:
+		directory = os.path.join('C:\\', dir)
 	if not os.path.exists(directory):
 		os.makedirs(directory)
 	return directory
 
 
 #Combines the output of the filename and directory.
-def create_filepath(filename, directory, op_sys):
-	d = create_directory(dir = directory, op_sys = op_sys)
+def create_filepath(filename, directory, windows):
+	d = create_directory(dir = directory, windows = windows)
 	f = create_filename(filename)
 	path = os.path.join(d, f)
 	return path
@@ -70,14 +70,21 @@ def winnebago():
 	propane_price = retail_taxfree - 0.50
 	raw_cost_of_propane = propane_price - propane_mft
 	
-	#Create CSV.
-	filepath = create_filepath(filename = 'winnebago_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac') #Write op_sys = 'windows' if running on windows
+	#Define filepath.
+	filepath = create_filepath(
+		filename = 'winnebago_price', 
+		directory = 'Documents/Github/chrisGasBuddy/danTest', 
+		windows = False #Write False if not running this program on Windows.
+		) 
+	
+	#Create CSV file.
 	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Raw Cost of Propane',raw_cost_of_propane])
 		filewriter.writerow(['WI Propane MFT',propane_mft])
 		filewriter.writerow(['Propane Price',propane_price])
 	
+	#Return finishing message.
 	print '\nWinnebago file created, see "' + filepath + '"'
 	return propane_price
 	
@@ -94,13 +101,20 @@ def rd_diesel():
 	#Calculate price.
 	sale_gas = retail_gas - .10
 	
-	#Create CSV.
-	filepath = create_filepath(filename = 'r&d_diesel_price', directory = 'Documents/Github/chrisGasBuddy/danTest', op_sys = 'mac') #Write op_sys = 'windows' if running on windows
+	#Define filepath.
+	filepath = create_filepath(
+		filename = 'r&d_diesel_price', 
+		directory = 'Documents/Github/chrisGasBuddy/danTest', 
+		windows = False #Write False if not running this program on Windows.
+		)
+	
+	#Create CSV file.
 	with open(filepath, 'wb') as csvfile:
 		filewriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 		filewriter.writerow(['Retail Diesel at Falcon Fuel, 300 S Cicero Ave',retail_gas])
 		filewriter.writerow(['AFS Weekly Diesel Fuel Price, 4654 W Washington Blvd',sale_gas])
 		
+	#Return finishing message.
 	print '\nR&D file created, see "' + filepath + '".'
 	return sale_gas
 
