@@ -73,10 +73,7 @@ def winnebago():
 	#Define filepath.
 	filepath = create_filepath(
 		filename = 'winnebago_price',
-<<<<<<< HEAD
-=======
 		#directory = 'Documents/Github/chrisGasBuddy/danTest',
->>>>>>> ad70bafc4c61ebb2d5a98fa051306aa996fc5f48
 		directory = 'Users\Chris\Dropbox\Alternative Fuel Supply\Customers\Winnebago County Sheriff\'s Dept\Billing\Gas Pricing CSV',
 		windows = True #Write False if not running this program on Windows.
 		)
@@ -109,10 +106,7 @@ def rd_diesel():
 	#Define filepath.
 	filepath = create_filepath(
 		filename = 'r&d_diesel_price',
-<<<<<<< HEAD
-=======
 		#directory = 'Documents/Github/chrisGasBuddy/danTest',
->>>>>>> ad70bafc4c61ebb2d5a98fa051306aa996fc5f48
 		directory = 'Users\Chris\Dropbox\Alternative Fuel Supply\Customers\R & D Bus Company\Diesel Fuel\Fuel Pricing',
 		windows = True #Write False if not running this program on Windows.
 		)
