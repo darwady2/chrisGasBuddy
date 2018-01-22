@@ -14,16 +14,17 @@ def get_http(url):
 #Finds the raw price objects from Gas-Buddy.
 def get_prices_from_web(html):
 	soup = BeautifulSoup(html, 'html.parser')
-	return soup.find_all(class_='price-display credit-price')
+	#return soup.find_all(class_='price-display credit-price')
+	return soup.find_all(class_='ui header styles__price___1wJ_R')
 
 
 #Cycles through the returned prices and returns a list of the prices.
 def show_prices(prices):
 	complete_prices = []
 	for price in prices:
-		split1_price = str(price).split(">")
-		split2_price = split1_price[1].split("<")
-		complete_prices.append(split2_price[0])
+		split1_price = str(price).split(">")		#Splits at the first div tag.
+		split2_price = split1_price[1].split("<")	#Splits at the second div tag.
+		complete_prices.append(split2_price[0][1:])	#Returns the first element (the price) and takes out the dollar sign.
 	return complete_prices
 
 
@@ -61,6 +62,7 @@ def winnebago():
 	html = get_http('https://www.gasbuddy.com/Station/66970')
 	prices_list = get_prices_from_web(html)
 	price_final = show_prices(prices_list)
+	print price_final
 	retail_gas = float(price_final[0])
 
 	#Calculate price.
