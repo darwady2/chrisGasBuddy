@@ -14,12 +14,16 @@ def get_http(url):
 #Finds the raw price objects from Gas-Buddy.
 def get_prices_from_web(html):
 	soup = BeautifulSoup(html, 'html.parser')
+	return soup.find_all(class_='ui header styles__price___1wJ_R') 	#Updated to new naming convention 1/22/18.
 
 
 #Cycles through the returned prices and returns a list of the prices.
 def show_prices(prices):
 	complete_prices = []
 	for price in prices:
+		split1_price = str(price).split(">")		#Splits at the first div tag.
+		split2_price = split1_price[1].split("<")	#Splits at the second div tag.
+		complete_prices.append(split2_price[0][1:])	#Returns the first element (the price) and takes out the dollar sign.
 	return complete_prices
 
 
@@ -69,6 +73,10 @@ def winnebago():
 	#Define filepath.
 	filepath = create_filepath(
 		filename = 'winnebago_price',
+<<<<<<< HEAD
+=======
+		#directory = 'Documents/Github/chrisGasBuddy/danTest',
+>>>>>>> ad70bafc4c61ebb2d5a98fa051306aa996fc5f48
 		directory = 'Users\Chris\Dropbox\Alternative Fuel Supply\Customers\Winnebago County Sheriff\'s Dept\Billing\Gas Pricing CSV',
 		windows = True #Write False if not running this program on Windows.
 		)
@@ -101,6 +109,10 @@ def rd_diesel():
 	#Define filepath.
 	filepath = create_filepath(
 		filename = 'r&d_diesel_price',
+<<<<<<< HEAD
+=======
+		#directory = 'Documents/Github/chrisGasBuddy/danTest',
+>>>>>>> ad70bafc4c61ebb2d5a98fa051306aa996fc5f48
 		directory = 'Users\Chris\Dropbox\Alternative Fuel Supply\Customers\R & D Bus Company\Diesel Fuel\Fuel Pricing',
 		windows = True #Write False if not running this program on Windows.
 		)
