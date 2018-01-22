@@ -14,8 +14,7 @@ def get_http(url):
 #Finds the raw price objects from Gas-Buddy.
 def get_prices_from_web(html):
 	soup = BeautifulSoup(html, 'html.parser')
-	#return soup.find_all(class_='price-display credit-price')
-	return soup.find_all(class_='ui header styles__price___1wJ_R')
+	return soup.find_all(class_='ui header styles__price___1wJ_R') 	#Updated to new naming convention 1/22/18.
 
 
 #Cycles through the returned prices and returns a list of the prices.
@@ -62,7 +61,6 @@ def winnebago():
 	html = get_http('https://www.gasbuddy.com/Station/66970')
 	prices_list = get_prices_from_web(html)
 	price_final = show_prices(prices_list)
-	print price_final
 	retail_gas = float(price_final[0])
 
 	#Calculate price.
