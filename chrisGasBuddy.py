@@ -7,8 +7,9 @@ from bs4 import BeautifulSoup
 
 #Gets contents of a page.
 def get_http(url):
-	response = urllib2.urlopen(url)
-	return response.read()
+	req = urllib2.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'})
+	webpage = urllib2.urlopen(req).read()
+	return webpage
 
 
 #Finds the raw price objects from Gas-Buddy.
